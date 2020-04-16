@@ -4,6 +4,7 @@ def soltution(n, b):
     repeating = True
     first = True
     repeating_set = set()
+
     def base_math(num=n, b=b):
         x = ''.join(sorted(num)[::-1])
         y = ''.join(sorted(num))
@@ -24,6 +25,7 @@ def soltution(n, b):
             first = False
             subtract_ans = convert_ans()
         else:
+            # number has to be the same length
             if len(subtract_ans) == k:
                 subtract_ans = convert_ans(base_math(subtract_ans))
             else:
@@ -31,7 +33,10 @@ def soltution(n, b):
                     subtract_ans = '0' + subtract_ans
         if int(subtract_ans) == 0:
             return 1
+        # check if answer is in the set
         if subtract_ans in ids:
+            # check if it is in the repeating set too
+            # use to find the cycle count
             if subtract_ans in repeating_set:
                 return len(repeating_set)
             else:
